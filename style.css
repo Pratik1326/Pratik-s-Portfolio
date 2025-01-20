@@ -1,0 +1,266 @@
+:root {
+    --primary-bg: #0d1117;
+    --secondary-bg: #161b22;
+    --text-primary: #c9d1d9;
+    --text-secondary: #8b949e;
+    --accent: #58a6ff;
+    --hover-accent: #1f6feb;
+    --cyberpunk: #ff007a;
+    --gradient-start: #0d1117;
+    --gradient-end: #1a202c;
+    --particle-color-1: #ff007a;
+    --particle-color-2: #58a6ff;
+    --particle-color-3: #79c0ff;
+    --text-glow: #58a6ff;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: url('https://media0.giphy.com/media/i4jKn7itdV2Tvjzj6Y/giphy.gif') no-repeat center center fixed;
+    background-size: cover;
+    color: var(--text-primary);
+    line-height: 1.6;
+    overflow-x: hidden;
+}
+
+header {
+    min-height: 100vh;
+    position: relative;
+    overflow: hidden;
+    padding: 4rem 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(13, 17, 23, 0.8);
+}
+
+.header-content {
+    text-align: center;
+    z-index: 1;
+    max-width: 800px;
+    color: #ffffff;
+}
+
+header h1 {
+    font-size: 3.5rem;
+    margin-bottom: 1rem;
+    color: var(--text-glow);
+    text-shadow: 0 0 10px var(--text-glow), 0 0 20px var(--text-glow);
+    transition: text-shadow 0.5s;
+}
+
+header h1:hover {
+    text-shadow: 0 0 20px var(--text-glow), 0 0 40px var(--text-glow);
+}
+
+header p {
+    font-size: 1.2rem;
+    color: var(--text-secondary);
+    margin-top: 1rem;
+    animation: fadeIn 2s ease-in;
+}
+
+section {
+    background: rgba(22, 27, 34, 0.9);
+    margin: 2rem auto;
+    padding: 2rem;
+    border-radius: 10px;
+    max-width: 800px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    opacity: 0;
+    transform: translateY(30px);
+    transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+section.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+h2 {
+    color: var(--accent);
+    margin-bottom: 1.5rem;
+    font-size: 1.8rem;
+    text-align: center;
+    animation: fadeIn 2s ease-in;
+}
+
+ul {
+    list-style: none;
+}
+
+li {
+    margin: 1rem 0;
+    padding: 1rem;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 8px;
+    transition: transform 0.3s ease, background 0.3s ease;
+    border: 1px solid var(--cyberpunk);
+    box-shadow: 0 0 15px var(--cyberpunk);
+}
+
+li:hover {
+    transform: translateX(10px);
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid var(--hover-accent);
+    box-shadow: 0 0 20px var(--hover-accent);
+}
+
+a {
+    color: var(--accent);
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+a:hover {
+    color: var(--hover-accent);
+}
+
+footer {
+    text-align: center;
+    padding: 2rem;
+    background: rgba(22, 27, 34, 0.9);
+    color: var(--text-secondary);
+    margin-top: 3rem;
+    border-top: 1px solid var(--cyberpunk);
+}
+
+/* Animations */
+@keyframes titleScale {
+    0% {
+        opacity: 0;
+        transform: scale(0.9);
+    }
+    100% {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+/* Particle Animations */
+.particles {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    overflow: hidden;
+    pointer-events: none;
+}
+
+.particle {
+    position: absolute;
+    border-radius: 50%;
+    pointer-events: none;
+    background: linear-gradient(45deg, var(--particle-color-1), var(--particle-color-2), var(--particle-color-3));
+}
+
+@keyframes float {
+    0% {
+        transform: translateY(0) rotate(0deg);
+    }
+    100% {
+        transform: translateY(-100vh) rotate(360deg);
+    }
+}
+
+/* Cute Floating Robot Animation */
+.robot {
+    position: fixed;
+    width: 150px;
+    height: 150px;
+    background: url('https://rejolut.com/wp-content/uploads/2023/07/gitCopiolot.png') no-repeat center center / contain;
+    top: 50%;
+    right: 5%;
+    transform: translateY(-50%);
+    animation: floatRobot 5s ease-in-out infinite, bobbing 2s infinite ease-in-out;
+    transition: transform 0.5s;
+}
+
+.robot:hover {
+    transform: translateY(-50%) scale(1.2);
+}
+
+@keyframes floatRobot {
+    0% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-20px);
+    }
+    100% {
+        transform: translateY(0);
+    }
+}
+
+@keyframes bobbing {
+    0% {
+        transform: translateY(0) rotate(0deg);
+    }
+    50% {
+        transform: translateY(-10px) rotate(10deg);
+    }
+    100% {
+        transform: translateY(0) rotate(0deg);
+    }
+}
+
+/* Entry Animation */
+@keyframes fadeIn {
+    0% { opacity: 0; }
+    100% { opacity: 1; }
+}
+
+header, section, footer {
+    animation: fadeIn 1s ease-in;
+}
+
+/* Scrolling Effect */
+@keyframes scrollEffect {
+    0% { opacity: 0; transform: translateY(30px); }
+    100% { opacity: 1; transform: translateY(0); }
+}
+
+section.visible {
+    animation: scrollEffect 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    header h1 {
+        font-size: 2.5rem;
+    }
+    
+    section {
+        margin: 1rem;
+        padding: 1.5rem;
+    }
+}
+
+/* Back-to-Top Button */
+.back-to-top {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background-color: var(--accent);
+    border: none;
+    border-radius: 50%;
+    color: var(--primary-bg);
+    font-size: 24px;
+    padding: 10px;
+    cursor: pointer;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+.back-to-top.visible {
+    opacity: 1;
+    visibility: visible;
+}
